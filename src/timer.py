@@ -22,13 +22,13 @@ class TimeManager:
         self.time_of_start = time.time()
 
     def seconds_per_tick(self):
-        return self.time_elapsed()/self.ticks
+        return self.time_elapsed() / self.ticks
 
 
 if __name__ == "__main__":
     tm = TimeManager()
     for i in range(20):
-        print(i, tm.ticks,  tm.time_elapsed())
+        print(i, tm.ticks, tm.time_elapsed())
         wait(215)
         tm.tick()
     print(tm.seconds_per_tick())
