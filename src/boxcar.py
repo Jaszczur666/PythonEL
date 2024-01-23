@@ -14,16 +14,13 @@ class Boxcar:
             bytesize=8,
             timeout=2,
             stopbits=serial.STOPBITS_ONE,
-            )
+        )
         self.serialPort.write(b"W0\r")
+
     def get_value(self):
         serial_string = b""  # Used to hold data coming over UART
-        while (
-            serial_string == b""
-        ):  
-            self.serialPort.write(
-                b"?1\r"
-            )  
+        while serial_string == b"":
+            self.serialPort.write(b"?1\r")
             self.serialPort.flush()
             serial_string = self.serialPort.read_until(b"\r")
             print(serial_string)
@@ -32,7 +29,7 @@ class Boxcar:
     def close_port(self):
         self.serialPort.close()
 
-        
+
 if __name__ == "__main__":
     srsbox = Boxcar()
     srsbox.init()
