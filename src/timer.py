@@ -1,16 +1,21 @@
 import time
 
+import device
+
 
 def wait(duration):
     time.sleep(duration / 1e3)
 
 
-class TimeManager:
+class TimeManager(device.Device):
     def __init__(self):
         self.time_of_start = (
             time.time()
         )  # to be reset later, initially will hold time of initialization
         self.ticks = 0
+
+    def parse(self, command):
+        print(command)
 
     def time_elapsed(self):
         return time.time() - self.time_of_start
