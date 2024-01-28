@@ -9,13 +9,15 @@ class ADC:
 
     def init(self, port_name="COM11"):
         self.serialPort = serial.Serial(
-            port=port_name,
+            port=None,
             baudrate=9600,
             bytesize=serial.EIGHTBITS,
             timeout=None,
             stopbits=serial.STOPBITS_ONE,
         )
-        time.sleep(3) # Give arduino that serves as intermediate time to reset
+        self.serialPort.port = port_name
+        self.serialPort.dtr = False
+        self.serialPort.open()
 
     def get_value(self):
         serial_string = b""  # Used to hold data coming over UART
